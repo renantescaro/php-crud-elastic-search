@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalago</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <title>Catalago</title>
 </head>
 <body>
     <div style="padding: 30px;">
@@ -24,6 +24,9 @@
                 <div class="col-md-1">
                     <button type="submit" name="btnBuscar" value="buscar" class="btn btn-primary">Buscar</button>
                 </div>
+                <div class="col-md-1">
+                    <a href="cadastrar.php" class="btn btn-primary">Cadastrar</a>
+                </div>
             </div>
         </form>
         <table class="table table-striped table-bordered">
@@ -32,6 +35,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Cidade</th>
                     <th scope="col">Estado</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +44,9 @@
                     <td><?=$p->_source->nome?></td>
                     <td><?=$p->_source->cidade?></td>
                     <td><?=$p->_source->estado?></td>
+                    <td>
+                        <a class="btn btn-warning" href='cadastrar.php/?id=<?=$p->_id?>'>Editar</a>
+                    </td>
                 </tr>
                 <?php } ?>
             </tbody>
