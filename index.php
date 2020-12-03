@@ -1,6 +1,7 @@
 <?php
     require_once 'includes.php';
-    $pessoas = isset($_POST['btnBuscar']) ? Pessoa::get($_POST['txtBusca']) : Pessoa::get();
+    $filtro  = isset($_GET['filtro']) ? $_GET['filtro'] : 'tudo';
+    $pessoas = isset($_GET['operacao']) ? Pessoa::get($_GET['txtBusca'],$_GET['filtro']) : Pessoa::get();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,13 +17,31 @@
             <h1>Listagem de Pessoas</h1>
         </div>
         <br>
-        <form method="POST">
+        <form method="GET">
             <div class="row">
+                <div class="col-md-12 col-12">
+                    <div class="form-check form-check-inline">
+                        <input name="filtro" class="form-check-input" type="radio" id="inlineRadio1" value="tudo" <?=$filtro=='tudo'?'checked':''?>>
+                        <label class="form-check-label" for="inlineRadio1">Tudo</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input name="filtro" class="form-check-input" type="radio" id="inlineRadio2" value="nome" <?=$filtro=='nome'?'checked':''?>>
+                        <label class="form-check-label" for="inlineRadio2">Nome</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input name="filtro" class="form-check-input" type="radio" id="inlineRadio3" value="cidade" <?=$filtro=='cidade'?'checked':''?>>
+                        <label class="form-check-label" for="inlineRadio3">Cidade</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input name="filtro" class="form-check-input" type="radio" id="inlineRadio4" value="estado" <?=$filtro=='estado'?'checked':''?>>
+                        <label class="form-check-label" for="inlineRadio4">Estado</label>
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <input name="txtBusca" class="form-control" type="text">
                 </div>
                 <div class="col-md-1">
-                    <button type="submit" name="btnBuscar" value="buscar" class="btn btn-primary">Buscar</button>
+                    <button type="submit" name="operacao" value="buscar" class="btn btn-primary">Buscar</button>
                 </div>
                 <div class="col-md-1">
                     <a href="cadastrar.php" class="btn btn-primary">Cadastrar</a>
